@@ -21,8 +21,9 @@ class LoginPresenterCompl : ILoginPresenter {
     override fun doLogin(name: String, passwd: String) {
         var isLoginSuccess = true
         val code = user.checkUserValidity(name, passwd)
-        if (code != 0)
+        if (!code.equals(0)) {
             isLoginSuccess = false
+        }
         val result = isLoginSuccess
         handler.postDelayed({ iLoginView.onLoginResult(result, code) }, 5000)
     }

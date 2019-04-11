@@ -5,5 +5,5 @@ interface IUser {
 
     val passwd: String
 
-    fun checkUserValidity(name: String, passwd: String): Int
+    fun checkUserValidity(name: String, passwd: String): Boolean
 }

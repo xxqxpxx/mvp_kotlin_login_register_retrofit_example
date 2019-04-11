@@ -42,14 +42,15 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         progress_login.visibility = visibility
     }
 
-    override fun onLoginResult(result: Boolean, code: Int) {
+    override fun onLoginResult(result: Boolean, code: Boolean) {
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
-        btn_login.isEnabled = true
         if (result) {
             Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
             //   goToHomeScreen()
-        } else
+        } else {
             Toast.makeText(this, "Login Fail, code = $code", Toast.LENGTH_SHORT).show()
+            btn_login.isEnabled = true
+        }
     }
 
     private fun goToHomeScreen() {
