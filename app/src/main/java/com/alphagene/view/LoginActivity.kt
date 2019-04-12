@@ -1,5 +1,6 @@
 package com.alphagene.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -10,7 +11,7 @@ import com.alphagene.view.interfaces.ILoginView
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), ILoginView {
-    lateinit var loginPresenter: ILoginPresenter
+    private lateinit var loginPresenter: ILoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,20 +22,20 @@ class LoginActivity : AppCompatActivity(), ILoginView {
 
     private fun setupView() {
         btn_login.setOnClickListener {
-            loginPresenter.setProgressBarVisiblity(View.VISIBLE)
+            loginPresenter.setProgressBarVisibility(View.VISIBLE)
             btn_login.isEnabled = false
-            var name = input_email.text.toString()
-            var passwd = input_password.text.toString()
+            val name = input_email.text.toString()
+            val passwd = input_password.text.toString()
             loginPresenter.doLogin(name, passwd)
         }
 
         link_signup.setOnClickListener {
-            //     val intent = Intent(this@LoginActivity , RegisterActivity::class.java)
-            //   startActivity(intent)
+            val intent = Intent(this@LoginActivity , RegistrationActivity::class.java)
+             startActivity(intent)
         }
         //init
         loginPresenter = LoginPresenterCompl(this)
-        loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
+        loginPresenter.setProgressBarVisibility(View.INVISIBLE)
 
     }
 
@@ -43,7 +44,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     }
 
     override fun onLoginResult(result: Boolean, code: Boolean) {
-        loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
+        loginPresenter.setProgressBarVisibility(View.INVISIBLE)
         if (result) {
             Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
             //   goToHomeScreen()
