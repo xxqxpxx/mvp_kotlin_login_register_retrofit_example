@@ -25,6 +25,13 @@ class LoginActivity : AppCompatActivity(), ILoginView {
             btn_login.isEnabled = false
             var name = input_email.text.toString()
             var passwd = input_password.text.toString()
+
+            if (name.isEmpty() || passwd.isEmpty()) {
+                Toast.makeText(this, "Please Fill the needed data", Toast.LENGTH_SHORT).show()
+                btn_login.isEnabled = true
+                loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
+            }
+            else
             loginPresenter.doLogin(name, passwd)
         }
 
@@ -42,13 +49,13 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         progress_login.visibility = visibility
     }
 
-    override fun onLoginResult(result: Boolean, code: Boolean) {
+    override fun onLoginResult(result: Boolean, code: Int) {
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
-        if (result) {
+        if (result && code == 1) {
             Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
             //   goToHomeScreen()
         } else {
-            Toast.makeText(this, "Login Fail, code = $code", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Login Fail, code = $code. Please Try Again", Toast.LENGTH_SHORT).show()
             btn_login.isEnabled = true
         }
     }
