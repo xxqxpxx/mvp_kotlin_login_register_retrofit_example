@@ -1,51 +1,22 @@
 package com.alphagene.presenter
 
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import com.alphagene.WebServices.Webservice
-import com.alphagene.model.IUser
 import com.alphagene.model.responseModels.LoginResponseModel
 import com.alphagene.view.interfaces.ILoginView
+import okhttp3.RequestBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
-import org.json.JSONObject
-import okhttp3.RequestBody
 
+class LoginPresenterCompl(var iLoginView: ILoginView) : ILoginPresenter {
 
-
-class LoginPresenterCompl : ILoginPresenter {
-
-    private  var RequestCode:Int = -1
-    var iLoginView: ILoginView
-    var handler: Handler
-    lateinit var loginResponseModel:LoginResponseModel
-
-    constructor(iLoginView: ILoginView) {
-        this.iLoginView = iLoginView
-  //      initUser()
-        handler = Handler(Looper.getMainLooper());
-    }
+    lateinit var loginResponseModel: LoginResponseModel
 
     override fun doLogin(name: String, passwd: String) {
-        var isLoginSuccess = true
-        loginRequest(name, passwd)
-        if (RequestCode!=1) {
-            isLoginSuccess = false
-        }
-        val result = isLoginSuccess
-        handler.postDelayed({ iLoginView.onLoginResult(result, RequestCode) }, 5000)
-    }
 
-    override fun setProgressBarVisiblity(visiblity: Int) {
-        iLoginView.onSetProgressBarVisibility(visiblity)
-    }
-
-    fun loginRequest(name: String, passwd: String){
         val data = HashMap<String, String>()
-
         data["identity"] = name
         data["password"] = passwd
 
@@ -59,14 +30,13 @@ class LoginPresenterCompl : ILoginPresenter {
                 if (!response.isSuccessful) {
                     try {
                         //    val jObjError = JSONObject(response.errorBody()!!.string())
-                        RequestCode = -1
+                        iLoginView.onLoginResult(false, -1)
                     } catch (e: Exception) {
-                        RequestCode = -1
+                        iLoginView.onLoginResult(false, -1)
                     }
-
                 } else {
                     loginResponseModel = response.body()!!
-                    RequestCode = 1
+                    iLoginView.onLoginResult(true, 1)
 
                     /*
                     val mPrefs = getActivity()!!.getPreferences(MODE_PRIVATE)
@@ -80,8 +50,12 @@ class LoginPresenterCompl : ILoginPresenter {
 
             override fun onFailure(call: Call<LoginResponseModel>, t: Throwable) {
                 Log.e("login", "onFailure: ", t)
-                RequestCode = 0
+                iLoginView.onLoginResult(false, 0)
             }
         })
+    }
+
+    override fun setProgressBarVisiblity(visiblity: Int) {
+        iLoginView.onSetProgressBarVisibility(visiblity)
     }
 }

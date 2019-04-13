@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val handler = Handler()
-        handler.postDelayed(Runnable { finish() }, 1000)
+        handler.postDelayed({ finish() }, 1000)
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

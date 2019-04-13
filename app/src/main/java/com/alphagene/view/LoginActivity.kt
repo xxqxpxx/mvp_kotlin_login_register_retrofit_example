@@ -10,12 +10,11 @@ import com.alphagene.view.interfaces.ILoginView
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), ILoginView {
-    lateinit var loginPresenter: ILoginPresenter
+    private lateinit var loginPresenter: ILoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.alphagene.R.layout.activity_login)
-
         setupView()
     }
 
@@ -30,9 +29,8 @@ class LoginActivity : AppCompatActivity(), ILoginView {
                 Toast.makeText(this, "Please Fill the needed data", Toast.LENGTH_SHORT).show()
                 btn_login.isEnabled = true
                 loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
-            }
-            else
-            loginPresenter.doLogin(name, passwd)
+            } else
+                loginPresenter.doLogin(name, passwd)
         }
 
         link_signup.setOnClickListener {
@@ -42,7 +40,6 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         //init
         loginPresenter = LoginPresenterCompl(this)
         loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
-
     }
 
     override fun onSetProgressBarVisibility(visibility: Int) {
