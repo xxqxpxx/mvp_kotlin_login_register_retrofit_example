@@ -66,6 +66,15 @@
                   android:textStyle="bold"
                   android:textSize="18sp"/>
 
+        <TextView android:id="@+id/link_forget_password"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="24dp"
+                  android:text="@string/forgetpassword"
+                  android:gravity="center"
+                  android:textStyle="bold"
+                  android:textSize="18sp"/>
+
     </LinearLayout>
 
 

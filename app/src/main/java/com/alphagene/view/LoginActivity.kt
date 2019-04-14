@@ -1,5 +1,6 @@
 package com.alphagene.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -23,8 +24,8 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         btn_login.setOnClickListener {
             loginPresenter.setProgressBarVisibility(View.VISIBLE)
             btn_login.isEnabled = false
-            var name = input_email.text.toString()
-            var passwd = input_password.text.toString()
+            val name = input_email.text.toString()
+            val passwd = input_password.text.toString()
 
             if (name.isEmpty() || passwd.isEmpty()) {
                 Toast.makeText(this, "Please Fill the needed data", Toast.LENGTH_SHORT).show()
@@ -35,9 +36,17 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         }
 
         link_signup.setOnClickListener {
-            //     val intent = Intent(this@LoginActivity , RegisterActivity::class.java)
-            //   startActivity(intent)
+            val intent = Intent(this@LoginActivity , RegistrationActivity::class.java)
+            startActivity(intent)
+            finish()
         }
+
+        link_forget_password.setOnClickListener {
+                 val intent = Intent(this@LoginActivity , ForgetPasswordActivity::class.java)
+               startActivity(intent)
+            finish()
+        }
+
         //init
         loginPresenter = LoginPresenterCompl(this)
         loginPresenter.setProgressBarVisibility(View.INVISIBLE)
@@ -55,6 +64,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         } else {
             Toast.makeText(this, "Login Fail, code = $code. Please Try Again", Toast.LENGTH_SHORT).show()
             btn_login.isEnabled = true
+            input_password.text.clear()
         }
     }
 

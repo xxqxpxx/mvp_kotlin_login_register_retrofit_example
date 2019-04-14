@@ -10,5 +10,8 @@
     <string name="email">Email</string>
     <string name="login">Login</string>
     <string name="no_account_yet_create_one">No account yet? Create one</string>
+    <string name="forgetpassword">Forgot Password? click here</string>
+    <string name="send_code">send_code</string>
+
 
 </resources>
