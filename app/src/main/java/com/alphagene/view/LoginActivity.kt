@@ -9,6 +9,7 @@ import com.alphagene.presenter.LoginPresenterCompl
 import com.alphagene.view.interfaces.ILoginView
 import kotlinx.android.synthetic.main.activity_login.*
 
+
 class LoginActivity : AppCompatActivity(), ILoginView {
     private lateinit var loginPresenter: ILoginPresenter
 
@@ -20,7 +21,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
 
     private fun setupView() {
         btn_login.setOnClickListener {
-            loginPresenter.setProgressBarVisiblity(View.VISIBLE)
+            loginPresenter.setProgressBarVisibility(View.VISIBLE)
             btn_login.isEnabled = false
             var name = input_email.text.toString()
             var passwd = input_password.text.toString()
@@ -28,7 +29,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
             if (name.isEmpty() || passwd.isEmpty()) {
                 Toast.makeText(this, "Please Fill the needed data", Toast.LENGTH_SHORT).show()
                 btn_login.isEnabled = true
-                loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
+                loginPresenter.setProgressBarVisibility(View.INVISIBLE)
             } else
                 loginPresenter.doLogin(name, passwd)
         }
@@ -39,7 +40,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         }
         //init
         loginPresenter = LoginPresenterCompl(this)
-        loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
+        loginPresenter.setProgressBarVisibility(View.INVISIBLE)
     }
 
     override fun onSetProgressBarVisibility(visibility: Int) {
@@ -47,7 +48,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     }
 
     override fun onLoginResult(result: Boolean, code: Int) {
-        loginPresenter.setProgressBarVisiblity(View.INVISIBLE)
+        loginPresenter.setProgressBarVisibility(View.INVISIBLE)
         if (result && code == 1) {
             Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
             //   goToHomeScreen()

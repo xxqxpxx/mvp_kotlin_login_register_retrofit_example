@@ -11,11 +11,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginPresenterCompl(var iLoginView: ILoginView) : ILoginPresenter {
-
     lateinit var loginResponseModel: LoginResponseModel
 
     override fun doLogin(name: String, passwd: String) {
-
         val data = HashMap<String, String>()
         data["identity"] = name
         data["password"] = passwd
@@ -55,7 +53,8 @@ class LoginPresenterCompl(var iLoginView: ILoginView) : ILoginPresenter {
         })
     }
 
-    override fun setProgressBarVisiblity(visiblity: Int) {
-        iLoginView.onSetProgressBarVisibility(visiblity)
+    override fun setProgressBarVisibility(visibility: Int) {
+        iLoginView.onSetProgressBarVisibility(visibility)
     }
+
 }
