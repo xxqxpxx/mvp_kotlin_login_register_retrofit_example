@@ -27,7 +27,7 @@ class RegistrationActivity : AppCompatActivity()  , IRegistrationView {
             registrationPresenter.setProgressBarVisibility(View.VISIBLE)
             btn_register.isEnabled = false
             val firstName = input_first_name.text.toString()
-            val lastName = input_first_name.text.toString()
+            val lastName = input_last_name.text.toString()
             val phoneNumber = input_mobile.text.toString()
             val email = input_email.text.toString()
             val passwd = input_password.text.toString()

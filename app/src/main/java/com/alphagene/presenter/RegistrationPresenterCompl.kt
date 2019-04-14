@@ -2,8 +2,6 @@ package com.alphagene.presenter
 
 import android.os.Handler
 import android.os.Looper
-import com.alphagene.model.IUser
-import com.alphagene.model.UserModel
 import com.alphagene.view.interfaces.IRegistrationView
 
 class RegistrationPresenterCompl(private var iRegistrationView: IRegistrationView) : IRegistrationPresenter {
