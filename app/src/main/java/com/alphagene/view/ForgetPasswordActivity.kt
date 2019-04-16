@@ -66,18 +66,19 @@ class ForgetPasswordActivity : AppCompatActivity(), IForgetPasswordView {
         }
     }
 
-    override fun onVerificationCodeResult(result: Boolean, code: Int) {
+    override fun onVerificationCodeResult(result: Boolean, code: Int, authenticationToken: String?) {
         if (result && code == 1) {
             Toast.makeText(this, getString(R.string.Success), Toast.LENGTH_SHORT).show()
-              goToUpdatePasswordScreen()
+              goToUpdatePasswordScreen(authenticationToken)
         } else {
             Toast.makeText(this, getString(R.string.please_try_again), Toast.LENGTH_SHORT).show()
             btn_verify_code.isEnabled = true
         }
     }
 
-    private fun goToUpdatePasswordScreen() {
+    private fun goToUpdatePasswordScreen(authenticationToken: String?) {
         val intent = Intent(this@ForgetPasswordActivity , UpdatePasswordActivity::class.java)
+        intent.putExtra("authenticationToken" , authenticationToken)
         startActivity(intent)
         finish()
     }
