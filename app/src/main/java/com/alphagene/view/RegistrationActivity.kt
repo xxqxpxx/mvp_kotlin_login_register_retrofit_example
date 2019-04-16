@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.alphagene.R
-import com.alphagene.presenter.IRegistrationPresenter
-import com.alphagene.presenter.RegistrationPresenterCompl
+import com.alphagene.presenter.interfaces.IRegistrationPresenter
+import com.alphagene.presenter.implemenation.RegistrationPresenterImpl
 import com.alphagene.view.interfaces.IRegistrationView
 import kotlinx.android.synthetic.main.activity_registration.*
 
@@ -37,7 +37,7 @@ class RegistrationActivity : AppCompatActivity()  , IRegistrationView {
         }
 
         //init
-        registrationPresenter = RegistrationPresenterCompl(this)
+        registrationPresenter = RegistrationPresenterImpl(this)
         registrationPresenter.setProgressBarVisibility(View.INVISIBLE)
 
     }

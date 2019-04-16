@@ -1,28 +1,17 @@
-package com.alphagene.presenter
+package com.alphagene.presenter.implemenation
 
 import android.util.Log
 import com.alphagene.WebServices.Webservice
 import com.alphagene.model.responseModels.LoginResponseModel
-import com.alphagene.view.interfaces.IForgetPasswordView
+import com.alphagene.presenter.interfaces.ILoginPresenter
+import com.alphagene.view.interfaces.ILoginView
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ForgetPasswordPresenterCompl (var iLoginView: IForgetPasswordView) : IForgetPasswordPresenter {
-
-    private lateinit var loginPresenter: IForgetPasswordPresenter
-
-
-    override fun doForgetPassword(name: String, passwd: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun doVerificationCode(name: String, passwd: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
+class LoginPresenterImpl(var iLoginView: ILoginView) : ILoginPresenter {
     lateinit var loginResponseModel: LoginResponseModel
 
     override fun doLogin(name: String, passwd: String) {

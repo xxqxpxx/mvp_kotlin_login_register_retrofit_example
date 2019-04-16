@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
-import com.alphagene.presenter.ILoginPresenter
-import com.alphagene.presenter.LoginPresenterCompl
+import com.alphagene.presenter.interfaces.ILoginPresenter
+import com.alphagene.presenter.implemenation.LoginPresenterImpl
 import com.alphagene.view.interfaces.ILoginView
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         }
 
         //init
-        loginPresenter = LoginPresenterCompl(this)
+        loginPresenter = LoginPresenterImpl(this)
         loginPresenter.setProgressBarVisibility(View.INVISIBLE)
     }
 

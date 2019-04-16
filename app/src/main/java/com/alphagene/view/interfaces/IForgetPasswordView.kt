@@ -4,4 +4,5 @@ interface IForgetPasswordView {
     fun onForgetPasswordResult(result: Boolean, code: Int)
     fun onVerificationCodeResult(result: Boolean, code: Int)
     fun onSetProgressBarVisibility(visibility: Int)
+    fun onVerificationCodeVisibility(visibility: Int)
 }

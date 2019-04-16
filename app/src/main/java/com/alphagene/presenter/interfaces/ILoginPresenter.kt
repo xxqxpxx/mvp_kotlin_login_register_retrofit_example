@@ -1,4 +1,4 @@
-package com.alphagene.presenter
+package com.alphagene.presenter.interfaces
 
 interface ILoginPresenter {
     fun doLogin(name: String, passwd: String)
