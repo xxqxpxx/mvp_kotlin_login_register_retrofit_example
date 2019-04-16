@@ -13,13 +13,29 @@ import retrofit2.Response
 class RegistrationPresenterCompl(private var iRegistrationView: IRegistrationView) : IRegistrationPresenter {
 
 
-    override fun doRegistration(firstName: String, lastName: String, email: String, password: String, mobile: String) {
+    override fun doRegistration(
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String,
+        mobile: String,
+        city: String,
+        street: String,
+        building: String,
+        floor: String,
+        apartment: String
+    ) {
         val data = HashMap<String, String>()
         data["firstName"] = firstName
         data["lastName"] = lastName
         data["phoneNumber"] = mobile
         data["email"] = email
         data["password"] = password
+        data["city"] = city
+        data["street"] = street
+        data["building"] = building
+        data["floor"] = floor
+        data["apartment"] = apartment
 
         val body = RequestBody.create(
             okhttp3.MediaType.parse("application/json; charset=utf-8"),
