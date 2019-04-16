@@ -10,7 +10,6 @@ import com.alphagene.presenter.RegistrationPresenterCompl
 import com.alphagene.view.interfaces.IRegistrationView
 import kotlinx.android.synthetic.main.activity_registration.*
 
-
 class RegistrationActivity : AppCompatActivity()  , IRegistrationView {
 
     private lateinit var registrationPresenter: IRegistrationPresenter
@@ -31,9 +30,20 @@ class RegistrationActivity : AppCompatActivity()  , IRegistrationView {
             val phoneNumber = input_mobile.text.toString()
             val email = input_email.text.toString()
             val passwd = input_password.text.toString()
+            val city = input_city.text.toString()
+            val street = input_street.text.toString()
+            val building = input_building.text.toString()
+            val floor = input_password.text.toString()
+            val apartment = input_password.text.toString()
 
-            //    fun doRegistration(firstName: String, lastName: String, email: String, password: String, mobile: String)
-            registrationPresenter.doRegistration(firstName , lastName , email , passwd , phoneNumber)
+
+            if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || passwd.isEmpty()
+                    || city.isEmpty()|| street.isEmpty()|| building.isEmpty()|| floor.isEmpty() || apartment.isEmpty() ) {
+                Toast.makeText(this, "Please Fill the needed data", Toast.LENGTH_SHORT).show()
+                btn_register.isEnabled = true
+                registrationPresenter.setProgressBarVisibility(View.INVISIBLE)
+            } else
+                registrationPresenter.doRegistration(firstName , lastName , email , passwd , phoneNumber, city , street , building , floor , apartment)
         }
 
         //init
@@ -47,9 +57,9 @@ class RegistrationActivity : AppCompatActivity()  , IRegistrationView {
     }
 
 
-    override fun onRegistrationResult(result: Boolean, code: Boolean) {
+    override fun onRegistrationResult(result: Boolean, code: Int) {
         registrationPresenter.setProgressBarVisibility(View.INVISIBLE)
-        if (result) {
+        if (result && code == 1) {
             Toast.makeText(this, "Registration Success", Toast.LENGTH_SHORT).show()
             //   goToHomeScreen()
         } else {
