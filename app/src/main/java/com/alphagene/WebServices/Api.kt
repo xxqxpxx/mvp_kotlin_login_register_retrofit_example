@@ -10,4 +10,7 @@ interface Api {
 
     @POST("login")
     fun login(@Body headers: RequestBody): Call<LoginResponseModel>
+
+    @POST("register")
+    fun register(@Body headers: RequestBody): Call<LoginResponseModel>
 }
