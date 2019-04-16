@@ -59,10 +59,10 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     override fun onLoginResult(result: Boolean, code: Int) {
         loginPresenter.setProgressBarVisibility(View.INVISIBLE)
         if (result && code == 1) {
-            Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,  getString(com.alphagene.R.string.Success), Toast.LENGTH_SHORT).show()
             //   goToHomeScreen()
         } else {
-            Toast.makeText(this, "Login Fail, code = $code. Please Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,  getString(com.alphagene.R.string.please_try_again), Toast.LENGTH_SHORT).show()
             btn_login.isEnabled = true
             input_password.text.clear()
         }
