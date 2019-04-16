@@ -22,11 +22,7 @@ interface Api {
 
     @POST("reset-password")
     fun reset_password(@Body headers: RequestBody): Call<ResponseBody>
-/*
-    ^
-    authenticationToken: string
-    newPassword: string
-*/
 
-
+    @POST("register")
+    fun register(@Body headers: RequestBody): Call<LoginResponseModel>
 }

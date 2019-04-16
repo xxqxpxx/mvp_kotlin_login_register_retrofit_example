@@ -1,5 +1,6 @@
 package com.alphagene.presenter.implemenation
 
+
 import android.util.Log
 import com.alphagene.WebServices.Webservice
 import com.alphagene.model.responseModels.LoginResponseModel
@@ -12,6 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginPresenterImpl(var iLoginView: ILoginView) : ILoginPresenter {
+
     lateinit var loginResponseModel: LoginResponseModel
 
     override fun doLogin(name: String, passwd: String) {
@@ -37,14 +39,6 @@ class LoginPresenterImpl(var iLoginView: ILoginView) : ILoginPresenter {
                     loginResponseModel = response.body()!!
                     iLoginView.onLoginResult(true, 1)
 
-                    /*
-                    val mPrefs = getActivity()!!.getPreferences(MODE_PRIVATE)
-                    val prefsEditor = mPrefs.edit()
-                    val gson = Gson()
-                    val json = gson.toJson(currentuser) // myObject - instance of MyObject
-                    prefsEditor.putString("MyObject", json)
-                    prefsEditor.commit()
-                */
                 }
 
             override fun onFailure(call: Call<LoginResponseModel>, t: Throwable) {
@@ -56,6 +50,10 @@ class LoginPresenterImpl(var iLoginView: ILoginView) : ILoginPresenter {
 
     override fun setProgressBarVisibility(visibility: Int) {
         iLoginView.onSetProgressBarVisibility(visibility)
+    }
+
+    override fun getUserModel(): LoginResponseModel {
+        return this.loginResponseModel
     }
 
 }
