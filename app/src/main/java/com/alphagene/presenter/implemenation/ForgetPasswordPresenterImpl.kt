@@ -50,7 +50,7 @@ class ForgetPasswordPresenterImpl(var iforgetPasswordView: IForgetPasswordView) 
 
     override fun doVerificationCode(code: String) {
         val data = HashMap<String, String>()
-        data["identificationKey"] = forgetPasswordResponseModel.getIdentificationKey().toString()
+        data["identificationToken"] = forgetPasswordResponseModel.getIidentificationToken().toString()
         data["authenticationCode"] = code
 
         val body = RequestBody.create(

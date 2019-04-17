@@ -3,17 +3,17 @@ package com.alphagene.model.responseModels
 class ForgetPasswordResponseModel {
 
     /**
-     * identificationKey : John
+     * identificationToken : John
      */
 
-    private var identificationKey: String? = null
+    private var identificationToken: String? = null
 
-    fun getIdentificationKey(): String? {
-        return identificationKey
+    fun getIidentificationToken(): String? {
+        return identificationToken
     }
 
     fun setIdentificationKey(identificationKey: String) {
-        this.identificationKey = identificationKey
+        this.identificationToken = identificationKey
     }
 
 }

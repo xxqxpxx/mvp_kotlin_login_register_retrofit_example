@@ -17,7 +17,7 @@ class UpdatePasswordPresenterImpl (var iUpdatePasswordView: IUpdatePasswordView)
     override fun doUpdatePassword(password: String , authenticationToken: String  ) {
         val data = HashMap<String, String>()
         data["authenticationToken"] = authenticationToken
-        data["newPassword"] = password
+        data["password"] = password
 
         val body = RequestBody.create(
             okhttp3.MediaType.parse("application/json; charset=utf-8"),

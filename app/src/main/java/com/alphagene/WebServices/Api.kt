@@ -17,7 +17,7 @@ interface Api {
     @POST("forgot-password")
     fun forgot_password(@Body headers: RequestBody): Call<ForgetPasswordResponseModel>
 
-    @POST("reset-password-authentication-code")
+    @POST("validate-password-reset-code")
     fun verify_authentication_code(@Body headers: RequestBody): Call<AuthenticationCodeResponseModel>
 
     @POST("reset-password")

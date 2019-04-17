@@ -65,7 +65,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
             val gson = Gson()
             val json = gson.toJson(loginPresenter.getUserModel()) // myObject - instance of MyObject
             prefsEditor.putString("MyObject", json)
-            prefsEditor.commit()
+            prefsEditor.apply()
 
             goToHomeScreen()
         } else {
