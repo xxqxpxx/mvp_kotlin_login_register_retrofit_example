@@ -15,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed({ finish() }, 1000)
 
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, CameraOrderingActivity::class.java)
         startActivity(intent)
         finish()
     }
