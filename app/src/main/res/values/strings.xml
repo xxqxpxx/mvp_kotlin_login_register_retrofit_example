@@ -43,6 +43,7 @@
     <string name="choose_gallery">Choose from Gallery</string>
     <string name="url_androidwave">https://androidwave.com/</string>
     <string name="url_androidwave_android">https://androidwave.com/category/android/</string>
+    <string name="submit_prescription">submit Prescription</string>
 
 
 </resources>

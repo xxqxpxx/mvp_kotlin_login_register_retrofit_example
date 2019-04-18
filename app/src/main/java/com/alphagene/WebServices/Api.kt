@@ -25,4 +25,8 @@ interface Api {
 
     @POST("register")
     fun register(@Body headers: RequestBody): Call<LoginResponseModel>
+
+    @POST("submit-order")
+    fun submitOrder(@Body headers: RequestBody): Call<ResponseBody>
+
 }
