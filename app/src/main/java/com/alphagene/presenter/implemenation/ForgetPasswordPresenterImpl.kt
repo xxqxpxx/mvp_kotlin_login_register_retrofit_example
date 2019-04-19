@@ -1,7 +1,7 @@
 package com.alphagene.presenter.implemenation
 
 import android.util.Log
-import com.alphagene.WebServices.Webservice
+import com.alphagene.webServices.Webservice
 import com.alphagene.model.responseModels.AuthenticationCodeResponseModel
 import com.alphagene.model.responseModels.ForgetPasswordResponseModel
 import com.alphagene.presenter.interfaces.IForgetPasswordPresenter
@@ -29,12 +29,8 @@ class ForgetPasswordPresenterImpl(var iforgetPasswordView: IForgetPasswordView) 
         Webservice.getInstance().getApi().forgot_password(body).enqueue(object : Callback<ForgetPasswordResponseModel> {
             override fun onResponse(call: Call<ForgetPasswordResponseModel>, response: Response<ForgetPasswordResponseModel>) =
                 if (!response.isSuccessful) {
-                    try {
                         //    val jObjError = JSONObject(response.errorBody()!!.string())
                         iforgetPasswordView.onForgetPasswordResult(false, -1)
-                    } catch (e: Exception) {
-                        iforgetPasswordView.onForgetPasswordResult(false, -1)
-                    }
                 } else {
                     forgetPasswordResponseModel = response.body()!!
                     iforgetPasswordView.onForgetPasswordResult(true, 1)
@@ -62,19 +58,7 @@ class ForgetPasswordPresenterImpl(var iforgetPasswordView: IForgetPasswordView) 
             .enqueue(object : Callback<AuthenticationCodeResponseModel> {
                 override fun onResponse(call: Call<AuthenticationCodeResponseModel>, response: Response<AuthenticationCodeResponseModel>) =
                     if (!response.isSuccessful) {
-                        try {
-                            //    val jObjError = JSONObject(response.errorBody()!!.string())
-                            iforgetPasswordView.onVerificationCodeResult(
-                                false,
-                                -1,
-                                null                            )
-                        } catch (e: Exception) {
-                            iforgetPasswordView.onVerificationCodeResult(
-                                false,
-                                -1,
-                                null
-                            )
-                        }
+                        iforgetPasswordView.onVerificationCodeResult(false, -1, null)
                     } else {
                         authenticationCodeResponseModel = response.body()!!
                         iforgetPasswordView.onVerificationCodeResult(true, 1 , authenticationCodeResponseModel.getAuthenticationToken().toString() )
@@ -82,11 +66,7 @@ class ForgetPasswordPresenterImpl(var iforgetPasswordView: IForgetPasswordView) 
 
                 override fun onFailure(call: Call<AuthenticationCodeResponseModel>, t: Throwable) {
                     Log.e("login", "onFailure: ", t)
-                    iforgetPasswordView.onVerificationCodeResult(
-                        false,
-                        0,
-                        null
-                    )
+                    iforgetPasswordView.onVerificationCodeResult(false, 0, null)
                 }
             })
     }

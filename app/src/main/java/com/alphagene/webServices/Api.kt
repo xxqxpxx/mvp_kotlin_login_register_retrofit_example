@@ -1,4 +1,4 @@
-package com.alphagene.WebServices
+package com.alphagene.webServices
 
 import com.alphagene.model.responseModels.AuthenticationCodeResponseModel
 import com.alphagene.model.responseModels.ForgetPasswordResponseModel

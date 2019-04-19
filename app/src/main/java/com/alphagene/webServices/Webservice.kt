@@ -1,10 +1,7 @@
-package com.alphagene.WebServices
+package com.alphagene.webServices
 
-import android.content.res.Resources
-import com.alphagene.R
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
-import okhttp3.internal.Internal.instance
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

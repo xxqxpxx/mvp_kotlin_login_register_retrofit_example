@@ -15,10 +15,19 @@ class LoginResponseModel{
     private var id: Int = 0
     private var firstName: String? = null
     private var lastName: String? = null
+    private var sessionId: String? = null
     private var type: String? = null
     private var validated: Boolean = false
     private var userCredentials: UserCredentialsBean? = null
     private var userAddress: List<UserAddressBean>? = null
+
+    fun getSessionId(): String? {
+        return sessionId
+    }
+
+    fun setSessionId(sessionid: String) {
+        this.sessionId = sessionid
+    }
 
     fun getId(): Int {
         return id

@@ -2,7 +2,7 @@ package com.alphagene.presenter.implemenation
 
 
 import android.util.Log
-import com.alphagene.WebServices.Webservice
+import com.alphagene.webServices.Webservice
 import com.alphagene.model.responseModels.LoginResponseModel
 import com.alphagene.presenter.interfaces.ILoginPresenter
 import com.alphagene.view.interfaces.ILoginView
@@ -29,14 +29,10 @@ class LoginPresenterImpl(var iLoginView: ILoginView) : ILoginPresenter {
         Webservice.getInstance().getApi().login(body).enqueue(object : Callback<LoginResponseModel> {
             override fun onResponse(call: Call<LoginResponseModel>, response: Response<LoginResponseModel>) =
                 if (!response.isSuccessful) {
-                    try {
-                        //    val jObjError = JSONObject(response.errorBody()!!.string())
-                        iLoginView.onLoginResult(false, -1)
-                    } catch (e: Exception) {
-                        iLoginView.onLoginResult(false, -1)
-                    }
+                    iLoginView.onLoginResult(false, -1)
                 } else {
                     loginResponseModel = response.body()!!
+                    loginResponseModel.setSessionId(response.headers().get("Set-Cookie").toString())
                     iLoginView.onLoginResult(true, 1)
 
                 }

@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Base64
 import android.view.View
 import android.widget.Toast
+import com.alphagene.R
 import com.alphagene.model.responseModels.LoginResponseModel
 import com.alphagene.presenter.implemenation.ICameraOrderPresenterImpl
 import com.alphagene.presenter.interfaces.ICameraOrderPresenter
@@ -32,17 +33,17 @@ import kotlinx.android.synthetic.main.activity_camera_ordering.*
 import java.io.ByteArrayOutputStream
 import java.io.File
 
-class CameraOrderingActivity : AppCompatActivity() , ICameraOrderView/*, ImageContract.View*/ {
+class CameraOrderingActivity : AppCompatActivity(), ICameraOrderView/*, ImageContract.View*/ {
 
 
     private val REQUEST_TAKE_PHOTO = 101
     private val REQUEST_GALLERY_PHOTO = 102
     private var permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private lateinit var imageUri: Uri
-    private lateinit var  iCameraOrderPresenter: ICameraOrderPresenter
+    private lateinit var iCameraOrderPresenter: ICameraOrderPresenter
     private lateinit var mPrefs: SharedPreferences
     private lateinit var currentUser: LoginResponseModel
-    private lateinit var strBase64:String
+    private lateinit var strBase64: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,13 +98,16 @@ class CameraOrderingActivity : AppCompatActivity() , ICameraOrderView/*, ImageCo
             iCameraOrderPresenter.setProgressBarVisibility(View.VISIBLE)
             submitPrescription.isEnabled = false
             val x = 4
-            if (x ==4) {
+            if (x == 4) {
                 Toast.makeText(this, "Please Fill the needed data", Toast.LENGTH_SHORT).show()
                 submitPrescription.isEnabled = true
                 iCameraOrderPresenter.setProgressBarVisibility(View.INVISIBLE)
-            }
-            else
-               iCameraOrderPresenter.doCameraOrder(currentUser.getId().toString() ,"sessionId" ,  strBase64)
+            } else
+                iCameraOrderPresenter.doCameraOrder(
+                    currentUser.getId().toString(),
+                    currentUser.getSessionId()!!,
+                    strBase64
+                )
         }
 
         iCameraOrderPresenter = ICameraOrderPresenterImpl(this)
@@ -122,10 +126,14 @@ class CameraOrderingActivity : AppCompatActivity() , ICameraOrderView/*, ImageCo
             REQUEST_TAKE_PHOTO ->
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     cameraButton.performClick()
-                } else if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                } else {
+                    Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_SHORT).show()
+                }
+            REQUEST_GALLERY_PHOTO ->
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     galleryButton.performClick()
                 } else {
-                    Toast.makeText(this, "You denied the permission", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_SHORT).show()
                 }
         }
     }
@@ -138,7 +146,6 @@ class CameraOrderingActivity : AppCompatActivity() , ICameraOrderView/*, ImageCo
                     val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
                     picture.setImageBitmap(bitmap)
                     toBase64()
-
                 }
             REQUEST_GALLERY_PHOTO ->
                 if (resultCode == Activity.RESULT_OK) {
@@ -204,10 +211,10 @@ class CameraOrderingActivity : AppCompatActivity() , ICameraOrderView/*, ImageCo
     override fun onCameraOrderResult(result: Boolean, code: Int) {
         iCameraOrderPresenter.setProgressBarVisibility(View.INVISIBLE)
         if (result && code == 1) {
-            Toast.makeText(this,  getString(com.alphagene.R.string.Success), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(com.alphagene.R.string.Success), Toast.LENGTH_SHORT).show()
 
         } else {
-            Toast.makeText(this,  getString(com.alphagene.R.string.please_try_again), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(com.alphagene.R.string.please_try_again), Toast.LENGTH_SHORT).show()
             submitPrescription.isEnabled = true
         }
     }
@@ -217,10 +224,8 @@ class CameraOrderingActivity : AppCompatActivity() , ICameraOrderView/*, ImageCo
     }
 
     private fun toBase64() {
-
-       // val file =  imagePath(imageUri, null)
-     //   val selectedImage = BitmapFactory.decodeFile(file.getAbsolutePath())
-
+        // val file =  imagePath(imageUri, null)
+        //   val selectedImage = BitmapFactory.decodeFile(file.getAbsolutePath())
         val selectedImage = BitmapFactory.decodeFile(picture.drawable.toString())
         val stream = ByteArrayOutputStream()
         selectedImage.compress(Bitmap.CompressFormat.JPEG, 30, stream)

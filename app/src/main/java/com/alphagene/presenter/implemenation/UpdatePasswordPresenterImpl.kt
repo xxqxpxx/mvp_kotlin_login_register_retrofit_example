@@ -1,8 +1,7 @@
 package com.alphagene.presenter.implemenation
 
 import android.util.Log
-import com.alphagene.WebServices.Webservice
-import com.alphagene.model.responseModels.LoginResponseModel
+import com.alphagene.webServices.Webservice
 import com.alphagene.presenter.interfaces.IUpdatePasswordPresenter
 import com.alphagene.view.interfaces.IUpdatePasswordView
 import okhttp3.RequestBody
@@ -27,12 +26,7 @@ class UpdatePasswordPresenterImpl (var iUpdatePasswordView: IUpdatePasswordView)
         Webservice.getInstance().getApi().reset_password(body).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) =
                 if (!response.isSuccessful) {
-                    try {
-                        //    val jObjError = JSONObject(response.errorBody()!!.string())
-                        iUpdatePasswordView.onUpdatePasswordResult(false, -1)
-                    } catch (e: Exception) {
-                        iUpdatePasswordView.onUpdatePasswordResult(false, -1)
-                    }
+                    iUpdatePasswordView.onUpdatePasswordResult(false, -1)
                 } else {
                     iUpdatePasswordView.onUpdatePasswordResult(true, 1)
                 }

@@ -1,7 +1,7 @@
 package com.alphagene.presenter.implemenation
 
 import android.util.Log
-import com.alphagene.WebServices.Webservice
+import com.alphagene.webServices.Webservice
 import com.alphagene.model.responseModels.LoginResponseModel
 import com.alphagene.presenter.interfaces.IRegistrationPresenter
 import com.alphagene.view.interfaces.IRegistrationView
@@ -48,12 +48,8 @@ class RegistrationPresenterImpl(private var iRegistrationView: IRegistrationView
         Webservice.getInstance().getApi().register(body).enqueue(object : Callback<LoginResponseModel> {
             override fun onResponse(call: Call<LoginResponseModel>, response: Response<LoginResponseModel>) =
                 if (!response.isSuccessful) {
-                    try {
-                        //    val jObjError = JSONObject(response.errorBody()!!.string())
-                        iRegistrationView.onRegistrationResult(false, -1)
-                    } catch (e: Exception) {
-                        iRegistrationView.onRegistrationResult(false, -1)
-                    }
+                    iRegistrationView.onRegistrationResult(false, -1)
+                    //    val jObjError = JSONObject(response.errorBody()!!.string())
                 } else {
                     iRegistrationView.onRegistrationResult(true, 1)
 

@@ -30,14 +30,14 @@ class ForgetPasswordActivity : AppCompatActivity(), IForgetPasswordView {
         btn_send_code.setOnClickListener {
             iForgetPasswordPresenter.setProgressBarVisibility(View.VISIBLE)
             btn_send_code.isEnabled = false
-            val email = input_email.text.toString()
+            val identity = input_email.text.toString()
 
-            if (email.isEmpty()) {
+            if (identity.isEmpty()) {
                 Toast.makeText(this, getString(com.alphagene.R.string.please_fill_the_needed_data), Toast.LENGTH_SHORT).show()
                 btn_send_code.isEnabled = true
                 iForgetPasswordPresenter.setProgressBarVisibility(View.INVISIBLE)
             } else
-                iForgetPasswordPresenter.doForgetPassword(email)
+                iForgetPasswordPresenter.doForgetPassword(identity)
         }
 
         btn_verify_code.setOnClickListener {
@@ -45,7 +45,7 @@ class ForgetPasswordActivity : AppCompatActivity(), IForgetPasswordView {
             btn_verify_code.isEnabled = false
             val code = verificationCode
 
-            if (code.isEmpty()) {
+            if (code.isEmpty() && code.length == 6) {
                 Toast.makeText(this, getString(com.alphagene.R.string.please_fill_the_needed_data), Toast.LENGTH_SHORT).show()
                 btn_verify_code.isEnabled = true
                 iForgetPasswordPresenter.setProgressBarVisibility(View.INVISIBLE)

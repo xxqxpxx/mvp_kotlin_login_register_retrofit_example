@@ -1,8 +1,7 @@
 package com.alphagene.presenter.implemenation
 
 import android.util.Log
-import com.alphagene.WebServices.Webservice
-import com.alphagene.model.responseModels.LoginResponseModel
+import com.alphagene.webServices.Webservice
 import com.alphagene.presenter.interfaces.ICameraOrderPresenter
 import com.alphagene.view.interfaces.ICameraOrderView
 import okhttp3.RequestBody
@@ -28,16 +27,10 @@ class ICameraOrderPresenterImpl(var iCameraOrderPresenterView: ICameraOrderView)
         Webservice.getInstance().getApi().submitOrder(body).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) =
                 if (!response.isSuccessful) {
-                    try {
-                        //    val jObjError = JSONObject(response.errorBody()!!.string())
-                        iCameraOrderPresenterView.onCameraOrderResult(false, -1)
-                    } catch (e: Exception) {
-                        iCameraOrderPresenterView.onCameraOrderResult(false, -1)
-                    }
+                    iCameraOrderPresenterView.onCameraOrderResult(false, -1)
                 } else {
                   //  loginResponseModel = response.body()!!
                     iCameraOrderPresenterView.onCameraOrderResult(true, 1)
-
                 }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
