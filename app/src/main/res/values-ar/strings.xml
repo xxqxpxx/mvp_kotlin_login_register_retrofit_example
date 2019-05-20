@@ -1,0 +1,76 @@
+<resources>
+
+    <string name="mobile_number">رقم الهاتف</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="last_name">اسم العائلة</string>
+    <string name="register">تسجيل</string>
+    <string name="password">كلمة السر</string>
+    <string name="email">الايميل</string>
+    <string name="login">دخول</string>
+    <string name="no_account_yet_create_one">لا تمتلك حساب ؟ اشترك من هنا</string>
+    <string name="forgetpassword">نسيت كلمة السر ؟ استرجعها من هنا</string>
+    <string name="send_code">ارسال الرمز</string>
+    <string name="code_sent_success">تم ارسال الرمز , الرجاء ادخال الرمز</string>
+    <string name="please_try_again">حاول مره اخرى</string>
+    <string name="please_fill_the_needed_data">الرجاء ملئ الحقول الفارغه</string>
+    <string name="code">الرمز</string>
+    <string name="update_password">تحديث كلمة السر</string>
+    <string name="Success">نجح</string>
+    <string name="orderByPhoto">طلب بالروشته</string>
+    <string name="orderManually">طلب يدوي</string>
+    <string name="city">المدينة</string>
+    <string name="street">الشارع</string>
+    <string name="building">المبني</string>
+    <string name="floor">الدور</string>
+    <string name="apartment">الشقه</string>
+
+    <string name="action_settings">الاعدادات</string>
+    <string name="error_message_no_more_space">ﻻ توجود مساحة.</string>
+    <string name="error_message_insufficient_space">You have few space available, please make sure your have more than 5MB on disk to take pictures!</string>
+    <string name="ok">تم</string>
+    <string name="error_message">Error occurred!</string>
+    <string name="message_need_permission">Need Permissions</string>
+    <string name="message_grant_permission">This app needs permission to use this feature. You can grant them in app settings.</string>
+    <string name="label_setting">GO TO SETTINGS</string>
+    <string name="cancel">الغاء</string>
+    <string name="take_photo">تصوير</string>
+    <string name="choose_gallery">اختيار صوره من المعرض</string>
+    <string name="submit_prescription">ارسال الوصفه</string>
+    <string name="permission_denied">You denied the permission,</string>
+    <string name="add_field">اضف حقل جديد</string>
+
+    <string name="Registration_Success">نجح التسجيل</string>
+    <string name="failed_to_get_image">فشل في اختيار الصورة</string>
+    <string name="please_choose_phone">الرجاء اختيار صورة</string>
+    <string name="remember_me">تذكرني</string>
+
+    <string name="registration">التسجيل</string>
+    <string name="registration_desc">التسجيل مجاني للابد!</string>
+
+    <string name="contact_us">اتصل بنا</string>
+    <string name="submit">ارسال</string>
+    <string name="gallery">معرض الصور</string>
+    <string name="camera">الكاميرا</string>
+    <string name="your_comment_here">اكتب تعليقك هنا</string>
+    <string name="order_by_camera">اطلب بالكاميرا</string>
+    <string name="welcome">اهلا</string>
+    <string name="price">السعر:</string>
+    <string name="time">الوقت:</string>
+    <string name="availability">الادوية الموجودة:</string>
+    <string name="cancel_order">الغاء الطلب</string>
+    <string name="offers">العروض</string>
+    <string name="profile">الملف الشخصي</string>
+
+    <string name="city_">المدينة:</string>
+    <string name="apartment_">رقم الشقة:</string>
+    <string name="building_">رقم العمارة:</string>
+    <string name="floor_">رقم الدور:</string>
+    <string name="street_">اسم الشارع:</string>
+    <string name="verify">تفعيل</string>
+    <string name="medicine_name">اسم الدواء</string>
+    <string name="quantity">العدد</string>
+    <string name="add_address">اضافة عنوان</string>
+    <string name="delete_address">مسح العنوان</string>
+    <string name="update_address">تحديث العنوان</string>
+
+</resources>
